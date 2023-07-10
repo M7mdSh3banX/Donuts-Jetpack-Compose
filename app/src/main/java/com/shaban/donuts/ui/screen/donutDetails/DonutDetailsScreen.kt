@@ -10,14 +10,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -30,15 +27,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
+import com.shaban.donuts.ui.composable.CustomButton
+import com.shaban.donuts.ui.composable.SpacingVertical16
 import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Black
 import com.shaban.donuts.ui.theme.Primary
-import com.shaban.donuts.ui.theme.Secondary
 import com.shaban.donuts.ui.theme.Typography
 import com.shaban.donuts.ui.theme.White
 import com.shaban.donuts.ui.theme.WhiteBackground
@@ -90,7 +89,7 @@ fun DonutDetailsContent(
                     Icon(
                         modifier = Modifier.size(24.dp),
                         painter = painterResource(id = R.drawable.ic_arrow_back),
-                        contentDescription = "Arrow back Icon",
+                        contentDescription = stringResource(R.string.arrow_back_icon),
                         tint = Primary
                     )
                 }
@@ -117,16 +116,16 @@ fun DonutDetailsContent(
                     .background(color = WhiteBackground)
                     .padding(40.dp)
             ) {
-                Text(text = "Strawberry Wheel", style = Typography.titleMedium)
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(text = "About Donut", style = Typography.bodyLarge)
-                Spacer(modifier = Modifier.height(16.dp))
+                Text(text = state.name, style = Typography.titleMedium)
+                SpacingVertical16()
+                Text(text = stringResource(id = R.string.about_donut), style = Typography.bodyLarge)
+                SpacingVertical16()
                 Text(
                     text = state.description,
                     style = Typography.bodySmall
                 )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(text = "Quantity", style = Typography.bodyLarge)
+                SpacingVertical16()
+                Text(text = stringResource(id = R.string.quantity), style = Typography.bodyLarge)
                 Row(
                     modifier = Modifier.padding(top = 16.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -141,7 +140,7 @@ fun DonutDetailsContent(
                         Icon(
                             modifier = Modifier.size(16.dp),
                             painter = painterResource(id = R.drawable.ic_decrease),
-                            contentDescription = "Arrow back Icon",
+                            contentDescription = stringResource(R.string.decrease_icon),
                         )
                     }
                     Box(
@@ -165,12 +164,12 @@ fun DonutDetailsContent(
                         Icon(
                             modifier = Modifier.size(16.dp),
                             painter = painterResource(id = R.drawable.ic_increase),
-                            contentDescription = "Arrow back Icon",
+                            contentDescription = stringResource(R.string.increase_icon),
                             tint = White
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(16.dp))
+                SpacingVertical16()
                 Spacer(modifier = Modifier.weight(1F))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -182,17 +181,7 @@ fun DonutDetailsContent(
                         style = Typography.titleMedium.copy(color = Black),
                     )
                     Spacer(modifier = Modifier.width(24.dp))
-                    Button(
-                        modifier = Modifier.height(56.dp),
-                        onClick = { },
-                        colors = ButtonDefaults.buttonColors(Secondary),
-                    ) {
-                        Text(
-                            text = "Add to Cart",
-                            color = White,
-                            style = Typography.labelLarge
-                        )
-                    }
+                    CustomButton(onClick = { }, text = stringResource(id = R.string.add_to_cart))
                 }
             }
             IconButton(
@@ -207,7 +196,7 @@ fun DonutDetailsContent(
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite),
-                    contentDescription = "Arrow back Icon",
+                    contentDescription = stringResource(R.string.favorite_icon),
                     tint = Primary
                 )
             }

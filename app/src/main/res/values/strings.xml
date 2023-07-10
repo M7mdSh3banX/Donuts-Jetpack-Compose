@@ -2,4 +2,9 @@
     <string name="app_name">Donuts</string>
     <string name="about_donut">About Donut</string>
     <string name="quantity">Quantity</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="arrow_back_icon">Arrow back Icon</string>
+    <string name="decrease_icon">Decrease Icon</string>
+    <string name="increase_icon">Increase Icon</string>
+    <string name="favorite_icon">Favorite Icon</string>
 </resources>
