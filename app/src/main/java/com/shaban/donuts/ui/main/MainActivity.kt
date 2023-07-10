@@ -1,4 +1,4 @@
-package com.shaban.donuts
+package com.shaban.donuts.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
