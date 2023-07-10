@@ -17,8 +17,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -102,21 +100,21 @@ fun DonutDetailsContent(
                 contentScale = ContentScale.Crop
             )
         }
-            IconButton(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(45.dp)
-                    .background(color = White, shape = RoundedCornerShape(10.dp))
-                    .align(alignment = Alignment.End),
-                onClick = { onClickFavoriteIcon(state) }
-            ) {
-                Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite),
-                    contentDescription = "Arrow back Icon",
-                    tint = Primary
-                )
-            }
+        IconButton(
+            modifier = Modifier
+                .padding(16.dp)
+                .size(45.dp)
+                .background(color = White, shape = RoundedCornerShape(10.dp))
+                .align(alignment = Alignment.End),
+            onClick = { onClickFavoriteIcon(state) }
+        ) {
+            Icon(
+                modifier = Modifier.size(24.dp),
+                painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite),
+                contentDescription = "Arrow back Icon",
+                tint = Primary
+            )
+        }
 
         Column(
             modifier = Modifier
@@ -192,9 +190,8 @@ fun DonutDetailsContent(
                 )
                 Spacer(modifier = Modifier.width(24.dp))
                 Button(
-                    modifier = Modifier,
+                    modifier = Modifier.height(56.dp),
                     onClick = { },
-                    shape = MaterialTheme.shapes.extraLarge,
                     colors = ButtonDefaults.buttonColors(Secondary),
                 ) {
                     Text(
