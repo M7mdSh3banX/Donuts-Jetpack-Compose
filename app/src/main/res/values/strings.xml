@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Donuts</string>
+    <string name="about_donut">About Donut</string>
+    <string name="quantity">Quantity</string>
 </resources>
