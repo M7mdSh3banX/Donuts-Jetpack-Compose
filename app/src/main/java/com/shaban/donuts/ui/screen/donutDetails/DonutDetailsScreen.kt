@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -30,11 +29,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
 import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Black
@@ -49,6 +50,8 @@ fun DonutDetailsScreen(
     viewModel: DonutViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
+    val systemUiControl = rememberSystemUiController()
+    systemUiControl.setStatusBarColor(color = Color.Transparent, darkIcons = true)
 
     DonutDetailsContent(
         state = state,
@@ -72,6 +75,7 @@ fun DonutDetailsContent(
     ) {
         Column(
             modifier = Modifier
+                .padding(top = 16.dp)
                 .weight(1F)
                 .fillMaxSize()
         ) {
@@ -91,22 +95,20 @@ fun DonutDetailsContent(
 
             Image(
                 painter = painterResource(id = R.drawable.strawberry_wheel_donut),
-                contentDescription = "",
+                contentDescription = state.name,
                 modifier = Modifier
                     .aspectRatio(1F)
                     .align(Alignment.CenterHorizontally),
                 contentScale = ContentScale.Crop
             )
         }
-        Box(modifier = Modifier.align(alignment = Alignment.End)) {
-            FloatingActionButton(
+            IconButton(
                 modifier = Modifier
                     .padding(16.dp)
                     .size(45.dp)
-                    .align(alignment = Alignment.CenterStart),
-                onClick = { onClickFavoriteIcon(state) },
-                containerColor = White,
-                elevation = FloatingActionButtonDefaults.elevation(0.dp)
+                    .background(color = White, shape = RoundedCornerShape(10.dp))
+                    .align(alignment = Alignment.End),
+                onClick = { onClickFavoriteIcon(state) }
             ) {
                 Icon(
                     modifier = Modifier.size(24.dp),
@@ -115,7 +117,7 @@ fun DonutDetailsContent(
                     tint = Primary
                 )
             }
-        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -185,7 +187,7 @@ fun DonutDetailsContent(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "£${state.price}",
+                    text = "£${state.totalPrice}",
                     style = Typography.titleMedium.copy(color = Black),
                 )
                 Spacer(modifier = Modifier.width(24.dp))

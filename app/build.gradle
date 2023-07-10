@@ -84,4 +84,7 @@ dependencies {
     //Integration with Navigation
     def navigation_version = "2.6.0"
     implementation "androidx.navigation:navigation-compose:$navigation_version"
+
+    //Integration with System UI Controller
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.31.5-beta"
 }

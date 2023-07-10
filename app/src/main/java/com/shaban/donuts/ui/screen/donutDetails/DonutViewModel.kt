@@ -22,6 +22,7 @@ class DonutViewModel @Inject constructor() : ViewModel() {
                 name = "Strawberry Wheel",
                 description = "These soft, cake-like Strawberry Frosted Donuts feature fresh strawberries and a delicious fresh strawberry glaze frosting. Pretty enough for company and the perfect treat to satisfy your sweet tooth.",
                 price = 16.0,
+                totalPrice = 16.0
             )
         }
     }
@@ -32,22 +33,22 @@ class DonutViewModel @Inject constructor() : ViewModel() {
     fun onIncreaseQuantity(donut: DonutUiState) =
         _state.update {
             val newQuantity = donut.quantity + 1
-            val newPrice = donut.price + 16.0
+            val newPrice = donut.totalPrice + donut.price
 
             it.copy(
                 quantity = newQuantity,
-                price = newPrice
+                totalPrice = newPrice
             )
         }
 
     fun onDecreaseQuantity(donut: DonutUiState) =
         _state.update {
             val newQuantity = donut.quantity - 1
-            val newPrice = donut.price - 16.0
+            val newPrice = donut.totalPrice - donut.price
 
             it.copy(
                 quantity = newQuantity,
-                price = newPrice
+                totalPrice = newPrice
             )
         }
 }
