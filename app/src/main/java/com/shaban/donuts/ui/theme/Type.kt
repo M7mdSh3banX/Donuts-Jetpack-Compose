@@ -32,19 +32,19 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = Inter,
         fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         color = Black
     ),
     bodyMedium = TextStyle(
         fontFamily = Inter,
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         color = Black
     ),
     bodySmall = TextStyle(
         fontFamily = Inter,
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
         color = Black
     ),
     // endregion

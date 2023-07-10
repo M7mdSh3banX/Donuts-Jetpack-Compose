@@ -16,6 +16,6 @@ val BackgroundColor = Color(0xFFFED8DF)
 val BabyBlue = Color(0xFFD7E4F6)
 
 val White = Color(0xFFFFFFFF)
-val WhiteFA = Color(0xFFFAFAFA)
+val WhiteBackground = Color(0xFFF9F9F8)
 val Black = Color(0xFF000000)
 val Gray = Color(0xFF585858)
