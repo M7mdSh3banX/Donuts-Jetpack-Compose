@@ -6,6 +6,6 @@ data class DonutUiState(
     val name: String = "",
     val description: String = "",
     val isFavorite: Boolean = false,
-    val quantity: Int = 0,
+    val quantity: Int = 1,
     val price: Double = 0.0
 )

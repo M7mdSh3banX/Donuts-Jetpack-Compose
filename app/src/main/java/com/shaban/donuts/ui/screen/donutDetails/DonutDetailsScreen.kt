@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -49,12 +50,20 @@ fun DonutDetailsScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    DonutDetailsContent(state = state)
+    DonutDetailsContent(
+        state = state,
+        onClickFavoriteIcon = viewModel::onClickFavoriteIcon,
+        onClickIncreaseQuantity = viewModel::onIncreaseQuantity,
+        onClickDecreaseQuantity = viewModel::onDecreaseQuantity
+    )
 }
 
 @Composable
 fun DonutDetailsContent(
-    state: DonutUiState
+    state: DonutUiState,
+    onClickFavoriteIcon: (DonutUiState) -> Unit,
+    onClickIncreaseQuantity: (DonutUiState) -> Unit,
+    onClickDecreaseQuantity: (DonutUiState) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -89,28 +98,24 @@ fun DonutDetailsContent(
                 contentScale = ContentScale.Crop
             )
         }
-
-
         Box(modifier = Modifier.align(alignment = Alignment.End)) {
             FloatingActionButton(
                 modifier = Modifier
                     .padding(16.dp)
                     .size(45.dp)
                     .align(alignment = Alignment.CenterStart),
-                onClick = { },
+                onClick = { onClickFavoriteIcon(state) },
                 containerColor = White,
                 elevation = FloatingActionButtonDefaults.elevation(0.dp)
             ) {
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    painter = painterResource(id = R.drawable.ic_favorite),
+                    painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite),
                     contentDescription = "Arrow back Icon",
                     tint = Primary
                 )
             }
         }
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -124,7 +129,7 @@ fun DonutDetailsContent(
             Text(text = "About Donut", style = Typography.bodyLarge)
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "These soft, cake-like Strawberry Frosted Donuts feature fresh strawberries and a delicious fresh strawberry glaze frosting. Pretty enough for company and the perfect treat to satisfy your sweet tooth.",
+                text = state.description,
                 style = Typography.bodySmall
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -138,7 +143,7 @@ fun DonutDetailsContent(
                         .padding(end = 20.dp)
                         .background(color = White, shape = RoundedCornerShape(8.dp))
                         .size(40.dp),
-                    onClick = { }
+                    onClick = { if (state.quantity > 1) onClickDecreaseQuantity(state) }
                 ) {
                     Icon(
                         modifier = Modifier.size(16.dp),
@@ -152,7 +157,7 @@ fun DonutDetailsContent(
                         .size(40.dp)
                 ) {
                     Text(
-                        text = "1",
+                        text = state.quantity.toString(),
                         style = Typography.bodyLarge,
                         modifier = Modifier.align(Alignment.Center)
                     )
@@ -162,7 +167,7 @@ fun DonutDetailsContent(
                         .padding(start = 20.dp)
                         .background(color = Black, shape = RoundedCornerShape(8.dp))
                         .size(40.dp),
-                    onClick = { }
+                    onClick = { onClickIncreaseQuantity(state) }
                 ) {
                     Icon(
                         modifier = Modifier.size(16.dp),
@@ -179,10 +184,13 @@ fun DonutDetailsContent(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = "£16", style = Typography.titleMedium.copy(color = Black))
+                Text(
+                    text = "£${state.price}",
+                    style = Typography.titleMedium.copy(color = Black),
+                )
                 Spacer(modifier = Modifier.width(24.dp))
                 Button(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier,
                     onClick = { },
                     shape = MaterialTheme.shapes.extraLarge,
                     colors = ButtonDefaults.buttonColors(Secondary),
@@ -195,7 +203,6 @@ fun DonutDetailsContent(
                 }
             }
         }
-
     }
 }
 
