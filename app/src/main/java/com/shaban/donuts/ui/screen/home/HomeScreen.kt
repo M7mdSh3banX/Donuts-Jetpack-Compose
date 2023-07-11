@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,24 +50,28 @@ fun HomeContent(
             .fillMaxSize()
             .background(color = WhiteBackground)
     ) {
-        HomeHeader(
-            title = stringResource(R.string.header_title),
-            subtitle = stringResource(R.string.header_subtitle),
-            icon = painterResource(R.drawable.ic_search),
-            onClickSearch = { }
-        )
-        Text(text = "Today Offers", style = Typography.titleSmall.copy(color = Black))
-        /*LazyRow(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(horizontal = 24.dp)
-        ) {
-            items() {
+        Column(modifier = Modifier.padding(horizontal = 32.dp, vertical = 54.dp)) {
+            HomeHeader(
+                title = stringResource(R.string.header_title),
+                subtitle = stringResource(R.string.header_subtitle),
+                icon = painterResource(R.drawable.ic_search),
+                onClickSearch = { }
+            )
+            SpacingVertical16()
+            Text(text = "Today Offers", style = Typography.titleSmall.copy(color = Black))
+            /*LazyRow(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(horizontal = 24.dp)
+            ) {
+                items() {
 
+                }
+            }*/
+            SpacingVertical16()
+            Row {
+                DonutItem()
             }
-        }*/
-        Row {
-            DonutItem()
         }
     }
 }
