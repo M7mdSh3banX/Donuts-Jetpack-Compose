@@ -16,13 +16,14 @@ import com.shaban.donuts.ui.theme.White
 
 @Composable
 fun CustomButton(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     buttonColor: Color = Secondary,
     text: String,
     textColor: Color = White,
 ) {
     Button(
-        modifier = Modifier.height(56.dp),
+        modifier = modifier.height(56.dp),
         onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(buttonColor),
     ) {
