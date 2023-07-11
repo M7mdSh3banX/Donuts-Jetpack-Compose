@@ -1,13 +1,17 @@
 package com.shaban.donuts.ui.screen.onboarding
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,22 +41,33 @@ fun OnboardingScreen() {
     OnboardingContent()
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingContent() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = BackgroundColor)
     ) {
-
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
             Image(
                 painter = painterResource(id = R.drawable.donuts),
                 contentDescription = "Onboarding Image",
-                modifier = Modifier.aspectRatio(4F / 5F),
-                contentScale = ContentScale.Crop
+                modifier = Modifier
+                    .height(400.dp)
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+                    .aspectRatio(4F / 5F)
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE, //infinity
+                        delayMillis = 0,
+                        initialDelayMillis = 0,
+                        velocity = 100.dp,
+                        spacing = MarqueeSpacing(0.dp)
+                    ),
+                contentScale = ContentScale.Fit
             )
         }
         Box(
