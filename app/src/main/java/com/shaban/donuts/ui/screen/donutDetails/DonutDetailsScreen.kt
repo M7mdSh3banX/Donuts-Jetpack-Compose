@@ -1,5 +1,14 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -143,16 +152,25 @@ fun DonutDetailsContent(
                             contentDescription = stringResource(R.string.decrease_icon),
                         )
                     }
-                    Box(
-                        modifier = Modifier
-                            .background(color = White, shape = RoundedCornerShape(8.dp))
-                            .size(40.dp)
-                    ) {
-                        Text(
-                            text = state.quantity.toString(),
-                            style = Typography.bodyLarge,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
+                    AnimatedContent(
+                        targetState = state.quantity,
+                        transitionSpec = {
+                            flipAnimation().using(
+                                SizeTransform(clip = true)
+                            )
+                        }
+                    ) { quantity ->
+                        Box(
+                            modifier = Modifier
+                                .background(color = White, shape = RoundedCornerShape(8.dp))
+                                .size(40.dp)
+                        ) {
+                            Text(
+                                text = quantity.toString(),
+                                style = Typography.bodyLarge,
+                                modifier = Modifier.align(Alignment.Center)
+                            )
+                        }
                     }
                     IconButton(
                         modifier = Modifier
@@ -176,10 +194,19 @@ fun DonutDetailsContent(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(
-                        text = "£${state.totalPrice}",
-                        style = Typography.titleMedium.copy(color = Black),
-                    )
+                    AnimatedContent(
+                        targetState = state.totalPrice,
+                        transitionSpec = {
+                            flipAnimation().using(
+                                SizeTransform(clip = true)
+                            )
+                        }
+                    ) { totalPrice ->
+                        Text(
+                            text = "£$totalPrice",
+                            style = Typography.titleMedium.copy(color = Black),
+                        )
+                    }
                     Spacer(modifier = Modifier.width(24.dp))
                     CustomButton(onClick = { }, text = stringResource(id = R.string.add_to_cart))
                 }
@@ -202,6 +229,16 @@ fun DonutDetailsContent(
             }
         }
     }
+}
+
+private fun flipAnimation(
+    duration: Int = 500
+): ContentTransform {
+    return (slideInVertically(animationSpec = tween(durationMillis = duration)) { height -> height } + fadeIn(
+        animationSpec = tween(durationMillis = duration)
+    )).togetherWith(slideOutVertically(animationSpec = tween(durationMillis = duration)) { height -> -height } + fadeOut(
+        animationSpec = tween(durationMillis = duration)
+    ))
 }
 
 @Preview

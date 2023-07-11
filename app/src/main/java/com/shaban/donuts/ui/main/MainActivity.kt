@@ -12,8 +12,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContent {
-            //DonutDetailsScreen()
-            OnboardingScreen()
+            DonutDetailsScreen()
+            //OnboardingScreen()
         }
     }
 }
