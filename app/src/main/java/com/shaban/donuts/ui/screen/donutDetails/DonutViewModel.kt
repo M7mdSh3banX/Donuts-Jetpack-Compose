@@ -1,6 +1,7 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
 import androidx.lifecycle.ViewModel
+import com.shaban.donuts.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -9,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DonutViewModel @Inject constructor() : ViewModel() {
-    private val _state = MutableStateFlow(DonutUiState())
+    private val _state = MutableStateFlow(DonutDetailsUiState())
     val state = _state.asStateFlow()
 
     init {
@@ -27,10 +28,10 @@ class DonutViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun onClickFavoriteIcon(donut: DonutUiState) =
+    fun onClickFavoriteIcon(donut: DonutDetailsUiState) =
         _state.update { it.copy(isFavorite = !donut.isFavorite) }
 
-    fun onIncreaseQuantity(donut: DonutUiState) =
+    fun onIncreaseQuantity(donut: DonutDetailsUiState) =
         _state.update {
             val newQuantity = donut.quantity + 1
             val newPrice = donut.totalPrice + donut.price
@@ -41,7 +42,7 @@ class DonutViewModel @Inject constructor() : ViewModel() {
             )
         }
 
-    fun onDecreaseQuantity(donut: DonutUiState) =
+    fun onDecreaseQuantity(donut: DonutDetailsUiState) =
         _state.update {
             val newQuantity = donut.quantity - 1
             val newPrice = donut.totalPrice - donut.price

@@ -69,10 +69,10 @@ fun DonutDetailsScreen(
 
 @Composable
 fun DonutDetailsContent(
-    state: DonutUiState,
-    onClickFavoriteIcon: (DonutUiState) -> Unit,
-    onClickIncreaseQuantity: (DonutUiState) -> Unit,
-    onClickDecreaseQuantity: (DonutUiState) -> Unit,
+    state: DonutDetailsUiState,
+    onClickFavoriteIcon: (DonutDetailsUiState) -> Unit,
+    onClickIncreaseQuantity: (DonutDetailsUiState) -> Unit,
+    onClickDecreaseQuantity: (DonutDetailsUiState) -> Unit,
 ) {
     Column(
         modifier = Modifier

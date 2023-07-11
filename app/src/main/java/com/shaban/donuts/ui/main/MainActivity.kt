@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.shaban.donuts.ui.screen.donutDetails.DonutDetailsScreen
+import com.shaban.donuts.ui.screen.home.HomeScreen
 import com.shaban.donuts.ui.screen.onboarding.OnboardingScreen
 
 class MainActivity : ComponentActivity() {
@@ -12,8 +13,9 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContent {
-            DonutDetailsScreen()
+            //DonutDetailsScreen()
             //OnboardingScreen()
+            HomeScreen()
         }
     }
 }

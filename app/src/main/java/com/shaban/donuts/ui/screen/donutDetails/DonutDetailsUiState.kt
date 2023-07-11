@@ -1,6 +1,6 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
-data class DonutUiState(
+data class DonutDetailsUiState(
     val id: Int = 0,
     val image: Int = 0,
     val name: String = "",

@@ -55,6 +55,18 @@ val Typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         color = Black
+    ),
+    labelMedium = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        color = Black
+    ),
+    labelSmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        color = Black
     )
     // endregion
 )
