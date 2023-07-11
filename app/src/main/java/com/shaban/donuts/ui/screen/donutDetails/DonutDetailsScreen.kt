@@ -152,19 +152,20 @@ fun DonutDetailsContent(
                             contentDescription = stringResource(R.string.decrease_icon),
                         )
                     }
-                    AnimatedContent(
-                        targetState = state.quantity,
-                        transitionSpec = {
-                            flipAnimation().using(
-                                SizeTransform(clip = true)
-                            )
-                        }
-                    ) { quantity ->
-                        Box(
-                            modifier = Modifier
-                                .background(color = White, shape = RoundedCornerShape(8.dp))
-                                .size(40.dp)
-                        ) {
+                    Box(
+                        modifier = Modifier
+                            .background(color = White, shape = RoundedCornerShape(8.dp))
+                            .size(40.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AnimatedContent(
+                            targetState = state.quantity,
+                            transitionSpec = {
+                                flipAnimation().using(
+                                    SizeTransform(clip = true)
+                                )
+                            }
+                        ) { quantity ->
                             Text(
                                 text = quantity.toString(),
                                 style = Typography.bodyLarge,
