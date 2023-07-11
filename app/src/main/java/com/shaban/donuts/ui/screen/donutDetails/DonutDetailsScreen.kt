@@ -143,7 +143,7 @@ fun DonutDetailsContent(
                         modifier = Modifier
                             .padding(end = 20.dp)
                             .background(color = White, shape = RoundedCornerShape(8.dp))
-                            .size(40.dp),
+                            .size(45.dp),
                         onClick = { if (state.quantity > 1) onClickDecreaseQuantity(state) }
                     ) {
                         Icon(
@@ -155,7 +155,7 @@ fun DonutDetailsContent(
                     Box(
                         modifier = Modifier
                             .background(color = White, shape = RoundedCornerShape(8.dp))
-                            .size(40.dp),
+                            .size(45.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         AnimatedContent(
@@ -177,7 +177,7 @@ fun DonutDetailsContent(
                         modifier = Modifier
                             .padding(start = 20.dp)
                             .background(color = Black, shape = RoundedCornerShape(8.dp))
-                            .size(40.dp),
+                            .size(45.dp),
                         onClick = { onClickIncreaseQuantity(state) }
                     ) {
                         Icon(
