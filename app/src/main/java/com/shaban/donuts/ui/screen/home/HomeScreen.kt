@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
+import com.shaban.donuts.ui.screen.home.composable.DonutISmallItem
 import com.shaban.donuts.ui.screen.home.composable.DonutLargeItem
 import com.shaban.donuts.ui.screen.home.composable.HomeHeader
 import com.shaban.donuts.ui.theme.BabyBlue
@@ -77,6 +78,20 @@ fun HomeContent(
                             DonutLargeItem(donutState = donut, cardBackground = BabyBlue)
                         else
                             DonutLargeItem(donutState = donut, cardBackground = BackgroundColor)
+                    }
+                }
+                Text(
+                    modifier = Modifier.padding(24.dp),
+                    text = stringResource(R.string.donuts),
+                    style = Typography.titleSmall.copy(color = Black)
+                )
+                LazyRow(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(20.dp),
+                    contentPadding = PaddingValues(24.dp)
+                ) {
+                    items(state.donut) { donut ->
+                        DonutISmallItem(donutState = donut)
                     }
                 }
             }

@@ -49,14 +49,14 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                         isFavorite = false
                     ),
                     DonutUiState(
-                        id = 2,
+                        id = 4,
                         name = "Coffee Donut",
                         image = R.drawable.coffee_donut,
                         description = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
                         price = 29,
                         sale = 20,
                         isFavorite = false
-                    )
+                    ),
                 )
             )
         }
