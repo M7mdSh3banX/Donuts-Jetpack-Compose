@@ -53,7 +53,7 @@ fun DonutLargeItem(
     donutState: DonutUiState,
     cardBackground: Color,
     onClickDonutCard: (DonutUiState) -> Unit = { },
-    onClickFavorite: (DonutUiState) -> Unit = { }
+    onClickFavorite: (Int) -> Unit = { }
 ) {
     Box(
         modifier = Modifier
@@ -76,14 +76,15 @@ fun DonutLargeItem(
                     .padding(16.dp)
                     .size(35.dp)
                     .background(color = White, shape = CircleShape),
-                onClick = { onClickFavorite(donutState) },
+                onClick = { onClickFavorite(donutState.id) },
             ) {
                 Icon(
                     modifier = Modifier.size(20.dp),
-                    painter = painterResource(id = R.drawable.ic_favorite),
-                    contentDescription = stringResource(R.string.favorite_icon),
-                    tint = Primary
-                )
+                    painter = painterResource(
+                        id = if (donutState.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outlined),
+                        contentDescription = stringResource(R.string.favorite_icon),
+                        tint = Primary
+                    )
             }
         }
         Column(
@@ -123,13 +124,13 @@ fun DonutLargeItem(
                 horizontalArrangement = Arrangement.End
             ) {
                 Text(
-                    text = "$${donutState.price}",
+                    text = "$${donutState.sale}",
                     style = Typography.labelMedium.copy(Black60),
                     textDecoration = TextDecoration.LineThrough
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "\$${donutState.sale}",
+                    text = "\$${donutState.price}",
                     style = Typography.titleSmall.copy(Black),
                 )
             }

@@ -41,12 +41,16 @@ fun HomeScreen(
     val systemUiControl = rememberSystemUiController()
     systemUiControl.setStatusBarColor(color = Color.Transparent, darkIcons = true)
 
-    HomeContent(state = state)
+    HomeContent(
+        state = state,
+        viewModel::onClickFavoriteIcon
+    )
 }
 
 @Composable
 fun HomeContent(
     state: HomeUiState,
+    onClickFavoriteIcon: (Int) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -73,11 +77,19 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(72.dp),
                     contentPadding = PaddingValues(start = 24.dp, end = 72.dp)
                 ) {
-                    items(state.donut) { donut ->
-                        if (state.donut.indexOf(donut) % 2 == 0)
-                            DonutLargeItem(donutState = donut, cardBackground = BabyBlue)
+                    items(state.donuts) { donut ->
+                        if (state.donuts.indexOf(donut) % 2 == 0)
+                            DonutLargeItem(
+                                donutState = donut,
+                                cardBackground = BabyBlue,
+                                onClickFavorite = { onClickFavoriteIcon(donut.id) }
+                            )
                         else
-                            DonutLargeItem(donutState = donut, cardBackground = BackgroundColor)
+                            DonutLargeItem(
+                                donutState = donut,
+                                cardBackground = BackgroundColor,
+                                onClickFavorite = { onClickFavoriteIcon(donut.id) }
+                            )
                     }
                 }
                 Text(
@@ -90,7 +102,7 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     contentPadding = PaddingValues(24.dp)
                 ) {
-                    items(state.donut) { donut ->
+                    items(state.donuts) { donut ->
                         DonutISmallItem(donutState = donut)
                     }
                 }

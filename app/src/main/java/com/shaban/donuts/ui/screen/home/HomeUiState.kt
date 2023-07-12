@@ -2,7 +2,7 @@ package com.shaban.donuts.ui.screen.home
 
 
 data class HomeUiState(
-    val donut: List<DonutUiState> = emptyList()
+    val donuts: List<DonutUiState> = emptyList()
 )
 
 data class DonutUiState(

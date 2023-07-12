@@ -223,7 +223,7 @@ fun DonutDetailsContent(
             ) {
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite),
+                    painter = painterResource(id = if (state.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outlined),
                     contentDescription = stringResource(R.string.favorite_icon),
                     tint = Primary
                 )
