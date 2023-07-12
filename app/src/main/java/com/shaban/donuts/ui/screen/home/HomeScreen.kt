@@ -57,7 +57,7 @@ fun HomeContent(
             .fillMaxSize()
             .background(color = WhiteBackground)
     ) {
-        Column(modifier = Modifier.padding(top = 54.dp)) {
+        Column {
             HomeHeader(
                 title = stringResource(R.string.header_title),
                 subtitle = stringResource(R.string.header_subtitle),
@@ -102,7 +102,7 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     contentPadding = PaddingValues(24.dp)
                 ) {
-                    items(state.donuts) { donut ->
+                    items(state.donuts.reversed()) { donut ->
                         DonutISmallItem(donutState = donut)
                     }
                 }

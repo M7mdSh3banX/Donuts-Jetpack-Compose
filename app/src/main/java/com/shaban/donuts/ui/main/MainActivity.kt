@@ -7,15 +7,15 @@ import androidx.core.view.WindowCompat
 import com.shaban.donuts.ui.screen.donutDetails.DonutDetailsScreen
 import com.shaban.donuts.ui.screen.home.HomeScreen
 import com.shaban.donuts.ui.screen.onboarding.OnboardingScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContent {
-            //DonutDetailsScreen()
-            //OnboardingScreen()
-            HomeScreen()
+            MainScreen()
         }
     }
 }
