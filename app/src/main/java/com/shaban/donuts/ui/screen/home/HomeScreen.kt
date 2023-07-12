@@ -4,10 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -22,10 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
-import com.shaban.donuts.ui.composable.SpacingVertical16
-import com.shaban.donuts.ui.composable.SpacingVertical60
-import com.shaban.donuts.ui.screen.home.composable.DonutItem
+import com.shaban.donuts.ui.screen.home.composable.DonutLargeItem
 import com.shaban.donuts.ui.screen.home.composable.HomeHeader
+import com.shaban.donuts.ui.theme.BabyBlue
+import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Black
 import com.shaban.donuts.ui.theme.Typography
 import com.shaban.donuts.ui.theme.WhiteBackground
@@ -50,27 +52,33 @@ fun HomeContent(
             .fillMaxSize()
             .background(color = WhiteBackground)
     ) {
-        Column(modifier = Modifier.padding(horizontal = 32.dp, vertical = 54.dp)) {
+        Column(modifier = Modifier.padding(top = 54.dp)) {
             HomeHeader(
                 title = stringResource(R.string.header_title),
                 subtitle = stringResource(R.string.header_subtitle),
                 icon = painterResource(R.drawable.ic_search),
                 onClickSearch = { }
             )
-            SpacingVertical16()
-            Text(text = "Today Offers", style = Typography.titleSmall.copy(color = Black))
-            /*LazyRow(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = PaddingValues(horizontal = 24.dp)
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
-                items() {
-
+                Text(
+                    modifier = Modifier.padding(24.dp),
+                    text = stringResource(R.string.today_offers),
+                    style = Typography.titleSmall.copy(color = Black)
+                )
+                LazyRow(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(72.dp),
+                    contentPadding = PaddingValues(start = 24.dp, end = 72.dp)
+                ) {
+                    items(state.donut) { donut ->
+                        if (state.donut.indexOf(donut) % 2 == 0)
+                            DonutLargeItem(donutState = donut, cardBackground = BabyBlue)
+                        else
+                            DonutLargeItem(donutState = donut, cardBackground = BackgroundColor)
+                    }
                 }
-            }*/
-            SpacingVertical16()
-            Row {
-                DonutItem()
             }
         }
     }

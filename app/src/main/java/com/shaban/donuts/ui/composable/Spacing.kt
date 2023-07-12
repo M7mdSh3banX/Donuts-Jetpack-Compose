@@ -13,4 +13,11 @@ fun SpacingVertical4() = Spacer(modifier = Modifier.height(4.dp))
 fun SpacingVertical16() = Spacer(modifier = Modifier.height(16.dp))
 
 @Composable
+fun SpacingVertical24() = Spacer(modifier = Modifier.height(24.dp))
+
+@Composable
+fun SpacingVertical32() = Spacer(modifier = Modifier.height(32.dp))
+
+@Composable
 fun SpacingVertical60() = Spacer(modifier = Modifier.height(60.dp))
+

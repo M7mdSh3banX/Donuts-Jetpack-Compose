@@ -2,15 +2,15 @@ package com.shaban.donuts.ui.screen.home
 
 
 data class HomeUiState(
-    val donut: DonutUiState = DonutUiState()
+    val donut: List<DonutUiState> = emptyList()
 )
 
 data class DonutUiState(
-    val id: String = "",
+    val id: Int = 0,
     val image: Int = 0,
     val name: String = "",
     val description: String = "",
-    val price: String = "",
-    val sale: String = "",
+    val price: Int = 0,
+    val sale: Int = 0,
     val isFavorite: Boolean = false
 )

@@ -13,4 +13,5 @@
     <string name="header_subtitle">Order your favorite donuts from here</string>
     <string name="header_title">Let’s Gonuts!</string>
     <string name="search_icon">Search Icon</string>
+    <string name="today_offers">Today Offers</string>
 </resources>

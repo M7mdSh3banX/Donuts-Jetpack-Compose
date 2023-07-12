@@ -35,7 +35,7 @@ fun HomeHeader(
     onClickSearch: () -> Unit
 ) {
     Row(
-        modifier = Modifier
+        modifier = Modifier.padding(24.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
