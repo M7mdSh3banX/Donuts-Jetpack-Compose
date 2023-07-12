@@ -37,6 +37,7 @@ import com.shaban.donuts.ui.theme.Black
 import com.shaban.donuts.ui.theme.Primary
 import com.shaban.donuts.ui.theme.Secondary
 import com.shaban.donuts.ui.theme.White
+import com.shaban.donuts.ui.theme.WhiteBackground
 
 @Composable
 fun BottomBar(navController: NavHostController) {
@@ -93,7 +94,7 @@ private fun RowScope.AddItem(
     val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
     val background = if (selected) Secondary else Transparent
-    val contentColor = if (selected) White else Black
+    val contentColor = if (selected) WhiteBackground else Black
 
     Box(
         modifier = Modifier

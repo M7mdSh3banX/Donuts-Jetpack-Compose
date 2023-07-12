@@ -21,6 +21,7 @@ class DonutViewModel @Inject constructor() : ViewModel() {
         _state.update {
             it.copy(
                 name = "Strawberry Wheel",
+                image = R.drawable.strawberry_wheel_donut,
                 description = "These soft, cake-like Strawberry Frosted Donuts feature fresh strawberries and a delicious fresh strawberry glaze frosting. Pretty enough for company and the perfect treat to satisfy your sweet tooth.",
                 price = 16.0,
                 totalPrice = 16.0
