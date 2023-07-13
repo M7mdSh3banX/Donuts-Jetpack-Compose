@@ -16,5 +16,3 @@ data class DonutUiState(
     val sale: Int = 0,
     val isFavorite: Boolean = false
 )
-
-val LocalHomeUiState = compositionLocalOf { DonutUiState() }

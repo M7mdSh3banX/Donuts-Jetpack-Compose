@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
+import com.shaban.donuts.ui.main.LocalNavigationProvider
 import com.shaban.donuts.ui.screen.home.composable.DonutISmallItem
 import com.shaban.donuts.ui.screen.home.composable.DonutLargeItem
 import com.shaban.donuts.ui.screen.home.composable.HomeHeader
@@ -41,16 +42,20 @@ fun HomeScreen(
     val systemUiControl = rememberSystemUiController()
     systemUiControl.setStatusBarColor(color = Color.Transparent, darkIcons = true)
 
+    val navController = LocalNavigationProvider.current
+
     HomeContent(
         state = state,
-        viewModel::onClickFavoriteIcon
+        viewModel::onClickFavoriteIcon,
+        onClickDonut = { }
     )
 }
 
 @Composable
 fun HomeContent(
     state: HomeUiState,
-    onClickFavoriteIcon: (Int) -> Unit
+    onClickFavoriteIcon: (Int) -> Unit,
+    onClickDonut: (DonutUiState) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -82,13 +87,14 @@ fun HomeContent(
                             DonutLargeItem(
                                 donutState = donut,
                                 cardBackground = BabyBlue,
-                                onClickFavorite = { onClickFavoriteIcon(donut.id) }
+                                onClickFavorite = onClickFavoriteIcon,
+                                onClickDonutCard = onClickDonut
                             )
                         else
                             DonutLargeItem(
                                 donutState = donut,
                                 cardBackground = BackgroundColor,
-                                onClickFavorite = { onClickFavoriteIcon(donut.id) }
+                                onClickFavorite = onClickFavoriteIcon
                             )
                     }
                 }
