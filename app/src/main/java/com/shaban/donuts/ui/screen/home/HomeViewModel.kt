@@ -2,7 +2,6 @@ package com.shaban.donuts.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import com.shaban.donuts.R
-import com.shaban.donuts.ui.screen.donutDetails.DonutDetailsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

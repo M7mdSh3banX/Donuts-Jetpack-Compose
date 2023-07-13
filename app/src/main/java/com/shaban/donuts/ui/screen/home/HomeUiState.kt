@@ -1,5 +1,7 @@
 package com.shaban.donuts.ui.screen.home
 
+import androidx.compose.runtime.compositionLocalOf
+
 
 data class HomeUiState(
     val donuts: List<DonutUiState> = emptyList()
@@ -14,3 +16,5 @@ data class DonutUiState(
     val sale: Int = 0,
     val isFavorite: Boolean = false
 )
+
+val LocalHomeUiState = compositionLocalOf { DonutUiState() }

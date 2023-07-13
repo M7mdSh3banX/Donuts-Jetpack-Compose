@@ -21,26 +21,21 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.shaban.donuts.R
+import com.shaban.donuts.ui.main.LocalNavigationProvider
 import com.shaban.donuts.ui.navigation.BottomBarScreen
 import com.shaban.donuts.ui.theme.Black
-import com.shaban.donuts.ui.theme.Primary
 import com.shaban.donuts.ui.theme.Secondary
-import com.shaban.donuts.ui.theme.White
 import com.shaban.donuts.ui.theme.WhiteBackground
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBar() {
     val screens = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Favorite,
@@ -48,6 +43,8 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Cart,
         BottomBarScreen.Profile,
     )
+
+    val navController = LocalNavigationProvider.current
 
     val navStackByEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navStackByEntry?.destination
@@ -77,7 +74,6 @@ fun BottomBar(navController: NavHostController) {
                     AddItem(
                         screen = screen,
                         currentDestination = currentDestination,
-                        navController = navController
                     )
                 }
             }
@@ -89,10 +85,10 @@ fun BottomBar(navController: NavHostController) {
 private fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navController: NavHostController
 ) {
-    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+    val navController = LocalNavigationProvider.current
 
+    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
     val background = if (selected) Secondary else Transparent
     val contentColor = if (selected) WhiteBackground else Black
 

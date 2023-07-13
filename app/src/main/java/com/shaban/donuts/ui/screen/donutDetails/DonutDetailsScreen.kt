@@ -33,6 +33,7 @@ import com.shaban.donuts.ui.composable.SpacingVertical16
 import com.shaban.donuts.ui.screen.donutDetails.composable.Footer
 import com.shaban.donuts.ui.screen.donutDetails.composable.Header
 import com.shaban.donuts.ui.screen.donutDetails.composable.QuantityButtons
+import com.shaban.donuts.ui.screen.home.LocalHomeUiState
 import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Primary
 import com.shaban.donuts.ui.theme.Typography
