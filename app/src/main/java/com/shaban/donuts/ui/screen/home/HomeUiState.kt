@@ -1,10 +1,9 @@
 package com.shaban.donuts.ui.screen.home
 
-import androidx.compose.runtime.compositionLocalOf
-
 
 data class HomeUiState(
-    val donuts: List<DonutUiState> = emptyList()
+    val largeDonuts: List<DonutUiState> = emptyList(),
+    val smallDonuts: List<DonutUiState> = emptyList()
 )
 
 data class DonutUiState(

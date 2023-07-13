@@ -82,8 +82,8 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(72.dp),
                     contentPadding = PaddingValues(start = 24.dp, end = 72.dp)
                 ) {
-                    items(state.donuts) { donut ->
-                        if (state.donuts.indexOf(donut) % 2 == 0)
+                    items(state.largeDonuts) { donut ->
+                        if (state.largeDonuts.indexOf(donut) % 2 == 0)
                             DonutLargeItem(
                                 donutState = donut,
                                 cardBackground = BabyBlue,
@@ -108,7 +108,7 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     contentPadding = PaddingValues(24.dp)
                 ) {
-                    items(state.donuts.reversed()) { donut ->
+                    items(state.smallDonuts) { donut ->
                         DonutISmallItem(donutState = donut)
                     }
                 }

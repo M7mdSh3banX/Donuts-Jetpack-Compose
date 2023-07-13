@@ -33,7 +33,6 @@ import com.shaban.donuts.ui.composable.SpacingVertical16
 import com.shaban.donuts.ui.screen.donutDetails.composable.Footer
 import com.shaban.donuts.ui.screen.donutDetails.composable.Header
 import com.shaban.donuts.ui.screen.donutDetails.composable.QuantityButtons
-import com.shaban.donuts.ui.screen.home.LocalHomeUiState
 import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Primary
 import com.shaban.donuts.ui.theme.Typography
@@ -85,7 +84,7 @@ fun DonutDetailsContent(
                     .fillMaxSize()
                     .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
                     .background(color = WhiteBackground)
-                    .padding(top = 40.dp, start =  40.dp, end = 40.dp, bottom = 16.dp)
+                    .padding(top = 40.dp, start = 40.dp, end = 40.dp, bottom = 16.dp)
                     .verticalScroll(rememberScrollState())
             ) {
                 Text(text = state.name, style = Typography.titleMedium)
