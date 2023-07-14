@@ -27,6 +27,8 @@ import com.shaban.donuts.R
 import com.shaban.donuts.ui.composable.CustomButton
 import com.shaban.donuts.ui.composable.SpacingVertical16
 import com.shaban.donuts.ui.composable.SpacingVertical60
+import com.shaban.donuts.ui.main.LocalNavigationProvider
+import com.shaban.donuts.ui.screen.home.navigateToHomeScreen
 import com.shaban.donuts.ui.theme.BackgroundColor
 import com.shaban.donuts.ui.theme.Black
 import com.shaban.donuts.ui.theme.Secondary
@@ -38,12 +40,16 @@ fun OnboardingScreen() {
     val systemUiControl = rememberSystemUiController()
     systemUiControl.setStatusBarColor(color = Color.Transparent, darkIcons = true)
 
-    OnboardingContent()
+    val navController = LocalNavigationProvider.current
+
+    OnboardingContent(onClickGetStarted = { navController.navigateToHomeScreen() })
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnboardingContent() {
+fun OnboardingContent(
+    onClickGetStarted: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -90,7 +96,7 @@ fun OnboardingContent() {
                 )
                 SpacingVertical60()
                 CustomButton(
-                    onClick = { },
+                    onClick = onClickGetStarted,
                     buttonColor = White,
                     text = stringResource(id = R.string.get_started),
                     textColor = Black,

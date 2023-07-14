@@ -81,10 +81,11 @@ fun DonutLargeItem(
                 Icon(
                     modifier = Modifier.size(20.dp),
                     painter = painterResource(
-                        id = if (donutState.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outlined),
-                        contentDescription = stringResource(R.string.favorite_icon),
-                        tint = Primary
-                    )
+                        id = if (donutState.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outlined
+                    ),
+                    contentDescription = stringResource(R.string.favorite_icon),
+                    tint = Primary
+                )
             }
         }
         Column(

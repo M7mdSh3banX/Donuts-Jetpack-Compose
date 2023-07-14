@@ -43,6 +43,13 @@ fun BottomBar() {
         BottomBarScreen.Cart,
         BottomBarScreen.Profile,
     )
+    val screensRoutes = listOf(
+        BottomBarScreen.Home.route,
+        BottomBarScreen.Favorite.route,
+        BottomBarScreen.Notification.route,
+        BottomBarScreen.Cart.route,
+        BottomBarScreen.Profile.route
+    )
 
     val navController = LocalNavigationProvider.current
 
@@ -52,9 +59,8 @@ fun BottomBar() {
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
 
     when (navStackByEntry?.destination?.route) {
-        else -> {
-            bottomBarState.value = true
-        }
+        in screensRoutes -> bottomBarState.value = true
+        else -> bottomBarState.value = false
     }
 
     AnimatedVisibility(

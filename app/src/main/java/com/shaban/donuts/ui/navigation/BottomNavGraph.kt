@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import com.shaban.donuts.ui.main.LocalNavigationProvider
 import com.shaban.donuts.ui.screen.donutDetails.donutDetailsRoute
 import com.shaban.donuts.ui.screen.home.homeRoute
+import com.shaban.donuts.ui.screen.onboarding.onboardingRoute
 
 @Composable
 fun BottomNavGraph() {
@@ -21,5 +22,6 @@ fun BottomNavGraph() {
         composable(route = BottomBarScreen.Cart.route) { }
         composable(route = BottomBarScreen.Profile.route) { }
         donutDetailsRoute()
+        onboardingRoute()
     }
 }

@@ -25,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
 import com.shaban.donuts.ui.main.LocalNavigationProvider
+import com.shaban.donuts.ui.screen.donutDetails.navigateToDonutDetailsScreen
 import com.shaban.donuts.ui.screen.home.composable.DonutISmallItem
 import com.shaban.donuts.ui.screen.home.composable.DonutLargeItem
 import com.shaban.donuts.ui.screen.home.composable.HomeHeader
@@ -47,7 +48,7 @@ fun HomeScreen(
     HomeContent(
         state = state,
         viewModel::onClickFavoriteIcon,
-        onClickDonut = { }
+        onClickDonut = { navController.navigateToDonutDetailsScreen(it.id) }
     )
 }
 
@@ -94,7 +95,8 @@ fun HomeContent(
                             DonutLargeItem(
                                 donutState = donut,
                                 cardBackground = BackgroundColor,
-                                onClickFavorite = onClickFavoriteIcon
+                                onClickFavorite = onClickFavoriteIcon,
+                                onClickDonutCard = onClickDonut
                             )
                     }
                 }
@@ -109,7 +111,7 @@ fun HomeContent(
                     contentPadding = PaddingValues(24.dp)
                 ) {
                     items(state.smallDonuts) { donut ->
-                        DonutISmallItem(donutState = donut)
+                        DonutISmallItem(donutState = donut, onClickDonutCard = onClickDonut)
                     }
                 }
             }

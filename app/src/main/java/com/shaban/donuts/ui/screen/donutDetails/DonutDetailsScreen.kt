@@ -1,5 +1,7 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,6 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shaban.donuts.R
 import com.shaban.donuts.ui.composable.SpacingVertical16
+import com.shaban.donuts.ui.main.LocalNavigationProvider
 import com.shaban.donuts.ui.screen.donutDetails.composable.Footer
 import com.shaban.donuts.ui.screen.donutDetails.composable.Header
 import com.shaban.donuts.ui.screen.donutDetails.composable.QuantityButtons
@@ -47,11 +53,14 @@ fun DonutDetailsScreen(
     val systemUiControl = rememberSystemUiController()
     systemUiControl.setStatusBarColor(color = Color.Transparent, darkIcons = true)
 
+    val navController = LocalNavigationProvider.current
+
     DonutDetailsContent(
         state = state,
         onClickFavoriteIcon = viewModel::onClickFavoriteIcon,
         onClickIncreaseQuantity = viewModel::onIncreaseQuantity,
-        onClickDecreaseQuantity = viewModel::onDecreaseQuantity
+        onClickDecreaseQuantity = viewModel::onDecreaseQuantity,
+        onClickExit = { navController.navigateUp() }
     )
 }
 
@@ -61,6 +70,7 @@ fun DonutDetailsContent(
     onClickFavoriteIcon: (DonutDetailsUiState) -> Unit,
     onClickIncreaseQuantity: (DonutDetailsUiState) -> Unit,
     onClickDecreaseQuantity: (DonutDetailsUiState) -> Unit,
+    onClickExit: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -72,8 +82,9 @@ fun DonutDetailsContent(
                 .weight(1F)
                 .fillMaxWidth()
         ) {
-            Header(donutState = state)
+            Header(donutState = state, onClickExit = onClickExit)
         }
+
         Box(
             modifier = Modifier
                 .weight(1F)

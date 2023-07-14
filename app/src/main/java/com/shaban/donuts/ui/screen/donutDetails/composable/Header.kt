@@ -22,7 +22,8 @@ import com.shaban.donuts.ui.theme.Primary
 @Composable
 fun Header(
     donutState: DonutDetailsUiState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClickExit:() -> Unit
 ) {
     Column(
         modifier = modifier
@@ -33,7 +34,7 @@ fun Header(
             modifier = Modifier
                 .padding(top = 16.dp, start = 16.dp)
                 .size(40.dp),
-            onClick = { }
+            onClick = onClickExit
         ) {
             Icon(
                 modifier = Modifier.size(24.dp),

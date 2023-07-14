@@ -1,7 +1,9 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.shaban.donuts.R
+import com.shaban.donuts.data.largeDonuts
+import com.shaban.donuts.data.smallDonuts
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -9,24 +11,30 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class DonutViewModel @Inject constructor() : ViewModel() {
+class DonutViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+) : ViewModel() {
     private val _state = MutableStateFlow(DonutDetailsUiState())
     val state = _state.asStateFlow()
 
+    private val args = DonutDetailsArgs(savedStateHandle)
+
     init {
-        getDonutDetails()
+        getDonutDetailsById(args.donutId.toInt())
     }
 
-    private fun getDonutDetails() {
-        _state.update {
-            it.copy(
-                name = "Strawberry Wheel",
-                image = R.drawable.strawberry_wheel_donut,
-                description = "These soft, cake-like Strawberry Frosted Donuts feature fresh strawberries and a delicious fresh strawberry glaze frosting. Pretty enough for company and the perfect treat to satisfy your sweet tooth.",
-                price = 16.0,
-                totalPrice = 16.0
-            )
+    private fun getDonutDetailsById(id: Int) {
+        val donut = findDonutById(id)
+        if (donut != null) {
+            _state.value = donut
+        } else {
+            // Handle the case when donut with the specified ID is not found
         }
+    }
+
+    private fun findDonutById(id: Int): DonutDetailsUiState? {
+        val donutList = largeDonuts + smallDonuts
+        return donutList.toDonutDetailsUiState().find { it.id == id }
     }
 
     fun onClickFavoriteIcon(donut: DonutDetailsUiState) =
