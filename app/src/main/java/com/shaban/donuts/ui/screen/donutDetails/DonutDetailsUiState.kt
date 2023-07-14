@@ -8,5 +8,5 @@ data class DonutDetailsUiState(
     val isFavorite: Boolean = false,
     val quantity: Int = 1,
     val price: Double = 0.0,
-    val totalPrice: Double = 0.0
+    val totalPrice: Double = price
 )

@@ -1,5 +1,6 @@
 package com.shaban.donuts.ui.screen.donutDetails
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.shaban.donuts.data.largeDonuts
@@ -27,6 +28,7 @@ class DonutViewModel @Inject constructor(
         val donut = findDonutById(id)
         if (donut != null) {
             _state.value = donut
+            Log.e("TAG", _state.value.toString())
         } else {
             // Handle the case when donut with the specified ID is not found
         }
