@@ -8,13 +8,15 @@ import com.shaban.donuts.ui.screen.donutDetails.donutDetailsRoute
 import com.shaban.donuts.ui.screen.home.homeRoute
 import com.shaban.donuts.ui.screen.onboarding.onboardingRoute
 
+const val ONBOARDING_ROUTE = "OnboardingRoute"
+
 @Composable
 fun BottomNavGraph() {
     val navController = LocalNavigationProvider.current
 
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Home.route
+        startDestination = ONBOARDING_ROUTE
     ) {
         homeRoute()
         composable(route = BottomBarScreen.Favorite.route) { }
