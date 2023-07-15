@@ -70,8 +70,8 @@ fun BottomBar() {
         content = {
             Row(
                 modifier = Modifier
-                    .padding(start = 10.dp, end = 10.dp, top = 8.dp, bottom = 16.dp)
-                    .background(Transparent)
+                    .background(WhiteBackground)
+                    .padding(vertical = 16.dp, horizontal = 10.dp)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
